@@ -175,7 +175,7 @@ export const StyledSidebarNavLink = styled.a<StyledSidebarNavLinkProps>(
       },
 
       "&:focus-visible": {
-        backgroundColor: "red",
+        backgroundColor: "#5fb051",
       },
 
       [`@media print`]: {
@@ -293,7 +293,7 @@ export const StyledSidebarOpenContainer =
 export const StyledOpenSidebarButton = styled.div(({ theme }) => {
   const color = conditionalCustomColor(
     theme,
-    theme.colors.bodyText,
+    "white",
     theme.colors.sidebarControlColor
   )
 
@@ -322,7 +322,7 @@ export const StyledCollapseSidebarButton =
     ({ showSidebarCollapse, theme }) => {
       const color = conditionalCustomColor(
         theme,
-        theme.colors.bodyText,
+        "white",
         theme.colors.sidebarControlColor
       )
 
