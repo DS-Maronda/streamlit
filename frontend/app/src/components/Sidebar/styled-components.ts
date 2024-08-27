@@ -293,7 +293,7 @@ export const StyledSidebarOpenContainer =
 export const StyledOpenSidebarButton = styled.div(({ theme }) => {
   const color = conditionalCustomColor(
     theme,
-    theme.colors.bodyText,
+    "white",
     theme.colors.sidebarControlColor
   )
 
@@ -322,7 +322,7 @@ export const StyledCollapseSidebarButton =
     ({ showSidebarCollapse, theme }) => {
       const color = conditionalCustomColor(
         theme,
-        theme.colors.bodyText,
+        "white",
         theme.colors.sidebarControlColor
       )
 
@@ -365,16 +365,16 @@ export const StyledSidebarNavSectionHeader = styled.header(({ theme }) => {
 })
 
 export const StyledViewButton = styled.button(({ theme }) => {
-  // const color = conditionalCustomColor(
-  //   "white",
-  //   "white",
-  //   "white"
-  // )
+  const color = conditionalCustomColor(
+    theme,
+    theme.colors.bodyText,
+    theme.colors.navActiveTextColor
+  )
 
   return {
     fontSize: theme.fontSizes.sm,
     lineHeight: "1.4rem",
-    color: "white",
+    color,
     backgroundColor: theme.colors.transparent,
     border: "none",
     borderRadius: theme.radii.lg,

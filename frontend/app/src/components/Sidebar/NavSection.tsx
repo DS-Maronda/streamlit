@@ -20,7 +20,7 @@ import { StyledSidebarNavSectionHeader } from "./styled-components"
 
 export interface NavSectionProps {
   header?: string
-  children: ReactElement[]
+  children: React.ReactNode // Updated type here
 }
 
 const NavSection = ({

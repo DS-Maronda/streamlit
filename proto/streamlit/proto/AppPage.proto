@@ -34,4 +34,7 @@ message AppPage {
   bool is_default = 4;
   string section_header = 5;
   string url_pathname = 6;
+
+  // New custom field for hiding the page in the sidebar
+  bool sidebar_hidden = 7;
 }

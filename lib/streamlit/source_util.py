@@ -60,7 +60,7 @@ def open_python_file(filename: str):
         return open(filename, encoding="utf-8")
 
 
-PAGE_FILENAME_REGEX = re.compile(r"([0-9]*)[_ -]*(.*)\.py")
+PAGE_FILENAME_REGEX = re.compile(r"([0-9]*)[@_ -]*(.*)\.py") # add @ symbol for page hiding
 
 
 def page_sort_key(script_path: Path) -> tuple[float, str]:
@@ -163,13 +163,21 @@ def get_pages(main_script_path_str: ScriptPath) -> dict[PageHash, PageInfo]:
             script_path_str = str(script_path.resolve())
             pi, pn = page_icon_and_name(script_path)
             psh = calc_md5(script_path_str)
-
-            pages[psh] = {
-                "page_script_hash": psh,
-                "page_name": pn,
-                "icon": pi,
-                "script_path": script_path_str,
-            }
+            if "@" in script_path.name:
+                pages[psh] = {
+                    "page_script_hash": psh,
+                    "page_name": pn,
+                    "icon": pi,
+                    "script_path": script_path_str,
+                    "sidebarHidden": True,  # new key to indicates hidden status on sidebar
+                }
+            else:
+                pages[psh] = {
+                    "page_script_hash": psh,
+                    "page_name": pn,
+                    "icon": pi,
+                    "script_path": script_path_str,
+                }
 
         _cached_pages = pages
 

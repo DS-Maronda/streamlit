@@ -70,6 +70,9 @@ const SidebarNav = ({
 
   const generateNavLinks = useCallback(
     (page: IAppPage, index: number) => {
+      if (page.sidebarHidden) {
+        return null
+      }
       const pageUrl = endpoints.buildAppPageURL(pageLinkBaseUrl, page)
       const pageName = page.pageName as string
       const tooltipContent = pageName.replace(/_/g, " ")
@@ -106,20 +109,26 @@ const SidebarNav = ({
   let contents = null
   if (navSections.length > 0) {
     const pagesBySectionHeader = groupBy(
-      appPages,
+      appPages.filter(page => !page.sidebarHidden), // Filter out hidden pages
       page => page.sectionHeader || ""
     )
-    // For MPAv2: renders each NavSection with its respective header
+
     contents = navSections.map(header => {
+      const pageElements = (pagesBySectionHeader[header] ?? []).map(
+        generateNavLinks
+      )
       return (
         <NavSection key={header} header={header}>
-          {(pagesBySectionHeader[header] ?? []).map(generateNavLinks)}
+          {/* Ensure multiple children are passed correctly */}
+          {pageElements}
         </NavSection>
       )
     })
   } else {
-    // For MPAv1: single NavSection with all pages displayed
-    contents = appPages.map(generateNavLinks)
+    const pageElements = appPages
+      .filter(page => !page.sidebarHidden)
+      .map(generateNavLinks)
+    contents = <>{pageElements}</> // Wrap in a fragment to ensure it's an array of elements
   }
 
   // We should show the nav items as expanded if

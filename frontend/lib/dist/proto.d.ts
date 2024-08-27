@@ -143,6 +143,9 @@ export interface IAppPage {
 
     /** AppPage urlPathname */
     urlPathname?: (string|null);
+
+    /** AppPage sidebarHidden */
+    sidebarHidden?: (boolean|null);
 }
 
 /** Represents an AppPage. */
@@ -171,6 +174,9 @@ export class AppPage implements IAppPage {
 
     /** AppPage urlPathname. */
     public urlPathname: string;
+
+    /** AppPage sidebarHidden. */
+    public sidebarHidden: boolean;
 
     /**
      * Creates a new AppPage instance using the specified properties.

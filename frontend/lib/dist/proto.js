@@ -325,6 +325,7 @@ export const AppPage = $root.AppPage = (() => {
      * @property {boolean|null} [isDefault] AppPage isDefault
      * @property {string|null} [sectionHeader] AppPage sectionHeader
      * @property {string|null} [urlPathname] AppPage urlPathname
+     * @property {boolean|null} [sidebarHidden] AppPage sidebarHidden
      */
 
     /**
@@ -391,6 +392,14 @@ export const AppPage = $root.AppPage = (() => {
     AppPage.prototype.urlPathname = "";
 
     /**
+     * AppPage sidebarHidden.
+     * @member {boolean} sidebarHidden
+     * @memberof AppPage
+     * @instance
+     */
+    AppPage.prototype.sidebarHidden = false;
+
+    /**
      * Creates a new AppPage instance using the specified properties.
      * @function create
      * @memberof AppPage
@@ -426,6 +435,8 @@ export const AppPage = $root.AppPage = (() => {
             writer.uint32(/* id 5, wireType 2 =*/42).string(message.sectionHeader);
         if (message.urlPathname != null && Object.hasOwnProperty.call(message, "urlPathname"))
             writer.uint32(/* id 6, wireType 2 =*/50).string(message.urlPathname);
+        if (message.sidebarHidden != null && Object.hasOwnProperty.call(message, "sidebarHidden"))
+            writer.uint32(/* id 7, wireType 0 =*/56).bool(message.sidebarHidden);
         return writer;
     };
 
@@ -484,6 +495,10 @@ export const AppPage = $root.AppPage = (() => {
                     message.urlPathname = reader.string();
                     break;
                 }
+            case 7: {
+                    message.sidebarHidden = reader.bool();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -537,6 +552,9 @@ export const AppPage = $root.AppPage = (() => {
         if (message.urlPathname != null && message.hasOwnProperty("urlPathname"))
             if (!$util.isString(message.urlPathname))
                 return "urlPathname: string expected";
+        if (message.sidebarHidden != null && message.hasOwnProperty("sidebarHidden"))
+            if (typeof message.sidebarHidden !== "boolean")
+                return "sidebarHidden: boolean expected";
         return null;
     };
 
@@ -564,6 +582,8 @@ export const AppPage = $root.AppPage = (() => {
             message.sectionHeader = String(object.sectionHeader);
         if (object.urlPathname != null)
             message.urlPathname = String(object.urlPathname);
+        if (object.sidebarHidden != null)
+            message.sidebarHidden = Boolean(object.sidebarHidden);
         return message;
     };
 
@@ -587,6 +607,7 @@ export const AppPage = $root.AppPage = (() => {
             object.isDefault = false;
             object.sectionHeader = "";
             object.urlPathname = "";
+            object.sidebarHidden = false;
         }
         if (message.pageScriptHash != null && message.hasOwnProperty("pageScriptHash"))
             object.pageScriptHash = message.pageScriptHash;
@@ -600,6 +621,8 @@ export const AppPage = $root.AppPage = (() => {
             object.sectionHeader = message.sectionHeader;
         if (message.urlPathname != null && message.hasOwnProperty("urlPathname"))
             object.urlPathname = message.urlPathname;
+        if (message.sidebarHidden != null && message.hasOwnProperty("sidebarHidden"))
+            object.sidebarHidden = message.sidebarHidden;
         return object;
     };
 
